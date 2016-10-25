@@ -52,6 +52,7 @@
             this.ltPrivatMessage = new System.Windows.Forms.Label();
             this.btPrivateMess = new System.Windows.Forms.Button();
             this.tbUsersOnline = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btConnect
@@ -288,11 +289,21 @@
             this.tbUsersOnline.Size = new System.Drawing.Size(269, 153);
             this.tbUsersOnline.TabIndex = 25;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(816, 177);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Users online";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1097, 535);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.tbUsersOnline);
             this.Controls.Add(this.btPrivateMess);
             this.Controls.Add(this.ltPrivatMessage);
@@ -352,6 +363,7 @@
         private System.Windows.Forms.Label ltPrivatMessage;
         private System.Windows.Forms.Button btPrivateMess;
         private System.Windows.Forms.TextBox tbUsersOnline;
+        private System.Windows.Forms.Label label2;
     }
 }
 
