@@ -1,6 +1,6 @@
 ﻿namespace ChatClient
 {
-    partial class Form1
+    partial class ChatMainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -83,7 +83,7 @@
             this.tbMessages.Size = new System.Drawing.Size(795, 425);
             this.tbMessages.TabIndex = 2;
             this.tbMessages.Click += new System.EventHandler(this.tbMessages_Click);
-            this.tbMessages.TextChanged += new System.EventHandler(this.tbMessages_TextChanged);
+//            this.tbMessages.TextChanged += new System.EventHandler(this.tbMessages_TextChanged);
             // 
             // tbMessage
             // 
@@ -101,7 +101,6 @@
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Type message";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btSendMessage
             // 
@@ -163,7 +162,7 @@
             // 
             // btReg
             // 
-            this.btReg.Location = new System.Drawing.Point(1010, 111);
+            this.btReg.Location = new System.Drawing.Point(1010, 108);
             this.btReg.Name = "btReg";
             this.btReg.Size = new System.Drawing.Size(75, 23);
             this.btReg.TabIndex = 11;
@@ -278,7 +277,7 @@
             this.btPrivateMess.Text = "Send private message";
             this.btPrivateMess.UseVisualStyleBackColor = true;
             this.btPrivateMess.Visible = false;
-            this.btPrivateMess.Click += new System.EventHandler(this.button1_Click);
+            this.btPrivateMess.Click += new System.EventHandler(this.btPrivMess_Click);
             // 
             // tbUsersOnline
             // 
@@ -298,7 +297,7 @@
             this.label2.TabIndex = 26;
             this.label2.Text = "Users online";
             // 
-            // Form1
+            // ChatMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -328,10 +327,9 @@
             this.Controls.Add(this.tbMessages);
             this.Controls.Add(this.tbIpEndPoint);
             this.Controls.Add(this.btConnect);
-            this.Name = "Form1";
+            this.Name = "ChatMainForm";
             this.Text = "Chat";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

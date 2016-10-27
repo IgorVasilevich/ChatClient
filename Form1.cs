@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace ChatClient
 {
-    public partial class Form1 : Form
+    public partial class ChatMainForm : Form
     {
         private ChatClient client;
 
-        public Form1()
+        public ChatMainForm()
         {
             InitializeComponent();
         }
@@ -60,6 +60,11 @@ namespace ChatClient
             client.MessageReceived += Cliet_MessagesReceived;
             client.PrivateMessageReceived += CLient_PrivateMessageReceived;
             client.OnGetUsersOnline += GetUsers;
+            JoinUI();
+        }
+
+        private void JoinUI()
+        {
             btConnect.Enabled = false;
             btConnect.Text = "Connected";
             tbIpEndPoint.Enabled = false;
@@ -90,26 +95,17 @@ namespace ChatClient
             tbMessages.BeginInvoke(new Action(() =>
             {
                 StringBuilder builder = new StringBuilder(tbMessages.Text);
-
-
                 foreach (var item in messages)
                 {
                     builder.AppendLine($"{item.Message}");
                 }
                 tbMessages.AppendText(builder.ToString());
             }));
-
-
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             client.Leave(tbLogIn.Text);
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btSendMessage_Click(object sender, EventArgs e)
@@ -126,38 +122,38 @@ namespace ChatClient
             client.GetMessages();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btLogIn_Click(object sender, EventArgs e)
         {
             try
             {
                 client.LogIn(tbLogIn.Text, mTbPassLog.Text);
-                mTbPassLog.Visible = false;
-                btLogIn.Visible = false;
-                tbLogIn.Enabled = false;
-                tlLogin.Enabled = false;
-                ltPassLog.Visible = false;
-                btReg.Visible = false;
-                mTbPassReg.Visible = false;
-                tbReg.Visible = false;
-                ltOR.Visible = false;
-                lbReg.Visible = false;
-                ltPassReg.Visible = false;
-                ltSendPM.Visible = true;
-                ltPrivatMessage.Visible = true;
-                ltToUserPM.Visible = true;
-                tbUserReceived.Visible = true;
-                tbUserReceiveMessage.Visible = true;
-                btPrivateMess.Visible = true;
             }
             catch (Exception)
             {
                 MessageBox.Show("Wrong Login! Please try one more time");
             }
+            LogInUI();
+        }
+
+        private void LogInUI()
+        {
+            mTbPassLog.Visible = false;
+            btLogIn.Visible = false;
+            tbLogIn.Enabled = false;
+            tlLogin.Enabled = false;
+            ltPassLog.Visible = false;
+            btReg.Visible = false;
+            mTbPassReg.Visible = false;
+            tbReg.Visible = false;
+            ltOR.Visible = false;
+            lbReg.Visible = false;
+            ltPassReg.Visible = false;
+            ltSendPM.Visible = true;
+            ltPrivatMessage.Visible = true;
+            ltToUserPM.Visible = true;
+            tbUserReceived.Visible = true;
+            tbUserReceiveMessage.Visible = true;
+            btPrivateMess.Visible = true;
         }
 
         private void btReg_Click(object sender, EventArgs e)
@@ -165,21 +161,21 @@ namespace ChatClient
             try
             {
                 client.Reg(tbReg.Text, mTbPassReg.Text);
-                btReg.Visible = false;
-                tbReg.Visible = false;
-                ltOR.Visible = false;
-                lbReg.Visible = false;
-                ltPassReg.Visible = false;
             }
             catch (Exception)
             {
                 MessageBox.Show("Login is already exist");
             }
+            RegUI();
         }
 
-        private void tbMessages_TextChanged(object sender, EventArgs e)
+        private void RegUI()
         {
-
+            btReg.Visible = false;
+            tbReg.Visible = false;
+            ltOR.Visible = false;
+            lbReg.Visible = false;
+            ltPassReg.Visible = false;
         }
 
         public void GetUsers(ChatClient client, List<string> users)
@@ -187,17 +183,16 @@ namespace ChatClient
             tbUsersOnline.BeginInvoke(new Action(() =>
             {
                 StringBuilder builder = new StringBuilder();
-
                 foreach (var item in users)
                 {
                     builder.AppendLine(item);
                 }
                 tbUsersOnline.AppendText(builder.ToString());
             }));
-            
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btPrivMess_Click(object sender, EventArgs e)
         {
             client.SendPrivateMessage(tbLogIn.Text, tbUserReceived.Text, tbUserReceiveMessage.Text);
         }

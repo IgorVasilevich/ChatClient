@@ -24,7 +24,18 @@ namespace ChatClient
         PrivateMessage = 10
     }
 
+    public class LogInException : Exception
+    {
+        public LogInException()
+        {
 
+        }
+        public LogInException(string message)
+            : base(message)
+        {
+
+        }
+    }
     public class ChatClient
     {
         private TcpClient client;
@@ -49,7 +60,6 @@ namespace ChatClient
         {
             writer.Write((int)Requests.Join);
             writer.Flush();
-
             ThreadPool.QueueUserWorkItem(ClientProc);
         }
 
@@ -71,7 +81,6 @@ namespace ChatClient
         {
             while (true)
             {
-
                 var command = (Requests)reader.ReadInt32();
                 switch (command)
                 {
@@ -79,10 +88,10 @@ namespace ChatClient
                         OnGetMessages(reader);
                         break;
                     case Requests.NotLogIn:
-                        throw new Exception();
+                        throw new LogInException();
                         break;
                     case Requests.NotReg:
-                        throw new Exception();
+                        throw new LogInException();
                         break;
                     case Requests.PrivateMessage:
                         OnGetPrivateMessage(reader);
@@ -90,8 +99,6 @@ namespace ChatClient
                     case Requests.GetUsers:
                         OnGetUsers(reader);
                         break;
-
-
                 }
             }
         }
@@ -127,7 +134,6 @@ namespace ChatClient
             {
                 result.Add(ReadChatMessage(reader));
             }
-
             MessageReceived?.Invoke(this, result);
         }
 
